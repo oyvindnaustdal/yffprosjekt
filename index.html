@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <meta charset="UTF-8">
+        <title>Github Pages</title>
+        <link rel="stylesheet" type="text/css" href="stil.css">
+    </head>
+    <body>
+        
+        
+        <p style ="color:whitesmoke">Surfing i Eplehagen</p>
+        <video src="film.mp4" width="400px" autoplay controls >
+            
+        </video>
+        
+        
+        
+<h1>Chat</h1>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js">
+        
+        </script>
+<script>
+  
+    import firebase from 'firebase/app'
+    
+    // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-HliuZbV5SPFePHY6TTQWXk0t6B3V0Bo",
+    authDomain: "chat-1cf26.firebaseapp.com",
+    databaseURL: "https://chat-1cf26.firebaseio.com",
+    projectId: "chat-1cf26",
+    storageBucket: "chat-1cf26.appspot.com",
+    messagingSenderId: "415305621780"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+    let database = firebase.database();
+    let meldingar = database.ref("meldingar"); let nyMelding = {
+        "sendar": "Kari Ku",
+        "tekst": "Nu går alt så meget bedre" };
+    meldingar.push(nyMelding);
+</script>
+<h1>Superchat</h1>
+<article id="txtMeldingar"></article>
+<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD-HliuZbV5SPFePHY6TTQWXk0t6B3V0Bo",
+    authDomain: "chat-1cf26.firebaseapp.com",
+    databaseURL: "https://chat-1cf26.firebaseio.com",
+    projectId: "chat-1cf26",
+    storageBucket: "chat-1cf26.appspot.com",
+    messagingSenderId: "415305621780"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+    let txtMeldingar = document.getElementById("txtMeldingar");
+    let database = firebase.database();
+    let meldingar = database.ref("meldingar"); let nyMelding = {
+        "sendar": "Guri Gås",
+        "tekst": "Nei, Kari, det gjer det langt ifrå" };
+    meldingar.push(nyMelding);
+    function visMelding(snapshot) {
+        var melding = snapshot.val();
+        txtMeldingar.innerHTML += `<p>${melding.sendar} seier ${melding.tekst}</p>`;
+    }
+    meldingar.on("child_added", visMelding);
+</script>
+
+    </body>
+</html>
